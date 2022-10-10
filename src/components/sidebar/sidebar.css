@@ -1,0 +1,10 @@
+.side-bar{
+    background-color: #fff;
+    position: fixed;
+    right: 15px;
+    top: 80px;
+    padding: 20px 30px;
+    max-height: 80vh;
+    overflow: auto;
+
+}

@@ -1,0 +1,8 @@
+.selected-country{
+    background-color: #ff35ff46;
+    margin: 0 0 20px 0;
+    color: #000;
+}
+.trash{
+    cursor: pointer;
+}

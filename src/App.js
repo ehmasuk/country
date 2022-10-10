@@ -1,23 +1,68 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from './components/card/card';
+import Sidebar from './components/sidebar/sidebar';
 
 function App() {
+
+
+
+  const [data,setData] = useState([]);
+
+
+  useEffect(()=>{
+
+    fetch('https://restcountries.com/v3.1/all')
+    .then(res=>res.json())
+    .then(data=>{
+      setData(data)
+    });
+
+
+
+  },[]);
+
+
+
+  const [count,setCount] = useState(0);
+
+  let [added,setAdded] = useState([]);
+
+
+const adding = (e)=>{
+
+  setCount(count+1);
+  var finalAdded = [...added, e];
+  setAdded(finalAdded);
+
+
+
+}
+
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      
+
+      <div className="container py-5">
+        <div className="row align-items-cemter">
+          {
+            data.map(e=> <Card data={e} adding={adding} />)
+          }
+        </div>
+      </div>
+
+      <Sidebar count={count} added={added} />
+
+
+
+
+
     </div>
   );
 }
